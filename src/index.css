@@ -1,13 +1,166 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Base Tailwind CSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- Custom @keyframes Definitions --- */
+
+/* animate-pulse-slow */
+/* Based on web searches for pulse animation [geeksforgeeks.org, travis.media] */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7; /* Slightly fade out */
+    transform: scale(1.05); /* Gently grow */
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.animate-pulse-slow {
+  animation: pulse-slow 4s infinite ease-in-out;
+}
+
+
+/* animate-pulse-fast */
+/* Similar to pulse-slow but with a shorter duration */
+@keyframes pulse-fast {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.03);
+  }
+}
+
+.animate-pulse-fast {
+  animation: pulse-fast 1.5s infinite ease-in-out;
+}
+
+
+/* animate-text-clip */
+/* Uses clip-path to reveal text from left to right [css-tricks.com, utilitybend.com, web.dev] */
+@keyframes text-clip {
+  0% {
+    clip-path: inset(0 100% 0 0); /* Start fully clipped from the right */
+  }
+  100% {
+    clip-path: inset(0 0 0 0); /* End fully revealed */
+  }
+}
+
+.animate-text-clip {
+  animation: text-clip 1s ease-out forwards;
+}
+
+
+/* animate-blob-slow */
+/* Creates a subtle, organic, floating motion for blob-like shapes */
+/* Based on general keyframe animation principles for transformations [geeksforgeeks.org, css-tricks.com] */
+@keyframes blob-slow {
+  0%, 100% {
+    transform: scale(1) translate(0%, 0%);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  33% {
+    transform: scale(1.05) translate(5%, -5%);
+    border-radius: 30% 70% 60% 40% / 50% 60% 30% 70%;
+  }
+  66% {
+    transform: scale(0.95) translate(-5%, 5%);
+    border-radius: 70% 30% 40% 60% / 70% 40% 60% 30%;
+  }
+}
+
+.animate-blob-slow {
+  animation: blob-slow 15s infinite alternate ease-in-out;
+}
+
+/* animate-bounce-in */
+/* Creates a bouncy entrance effect [geeksforgeeks.org, dev.to/ayushmanbthakur] */
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-100px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) translateY(10px); /* Overshoot slightly */
+  }
+  70% {
+    transform: scale(0.9) translateY(-5px); /* Bounce back slightly */
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+
+/* animate-bounce-slow */
+/* A continuous, gentle bounce effect, useful for indicators [code-boxx.com] */
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Moves up */
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s infinite ease-in-out;
+}
+
+
+/* animate-swing */
+/* A pendulum-like swing effect [tutorialspoint.com, animate.style] */
+@keyframes swing {
+  20% { transform: rotate(15deg); }
+  40% { transform: rotate(-10deg); }
+  60% { transform: rotate(5deg); }
+  80% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-swing {
+  animation: swing 1s ease-in-out; /* Apply once, or add infinite for continuous */
+}
+
+
+/* animate-fade-in */
+/* Simple fade-in effect [elementor.com, dev.to/tiaeastwood] */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+/* You also need to define the animate-slide-in-up from the ProfilePage code */
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.5s ease-out forwards;
 }
